@@ -1,0 +1,19 @@
+default_policy: DROP
+rules:
+  - priority: 10
+    direction: INBOUND
+    protocol: TCP
+    dst_port: [22, 22]
+    state: NEW
+    action: ACCEPT
+  - priority: 20
+    direction: INBOUND
+    protocol: TCP
+    dst_port: [80, 443]
+    state: NEW
+    action: ACCEPT
+  - priority: 30
+    direction: OUTBOUND
+    protocol: any
+    state: NEW
+    action: ACCEPT

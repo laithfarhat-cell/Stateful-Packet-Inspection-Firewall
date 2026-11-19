@@ -1,0 +1,12 @@
+services:
+  firewall:
+    build: .
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    command: ["--mode", "live", "--queue", "0", "--events", "/app/logs/firewall_events.json"]
+    volumes:
+      - ./rules.yaml:/app/rules.yaml:ro
+      - firewall-events:/app/logs
+volumes:
+  firewall-events:
