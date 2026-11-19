@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stateful-packet-inspection-firewall"
+version = "1.0.0"
+description = "A deterministic user-space stateful packet inspection firewall"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["scapy>=2.5,<3", "PyYAML>=6,<7", "rich>=13.7,<15"]
+
+[project.optional-dependencies]
+live = ["NetfilterQueue>=1.1; sys_platform == 'linux'"]
+test = ["pytest>=8,<9"]
+
+[project.scripts]
+spi-firewall = "main:main"
+
+[tool.setuptools]
+py-modules = ["main"]
+packages = ["core", "cli"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
